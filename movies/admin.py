@@ -15,6 +15,6 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(models.Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = 'name', 'rating', 'production_year', 'director'
-    search_fields = 'name', 'director', 'genre'
+    search_fields = 'name', 'director', 'genre__title'
     list_filter = 'genre',
     list_editable = 'director', 'rating', 'production_year'
