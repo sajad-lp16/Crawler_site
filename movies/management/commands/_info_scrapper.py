@@ -77,11 +77,4 @@ class CrawlModels(BaseCrawl):
             file.close()
         except:
             pass
-        # print(result)
         return result
-
-# a = CrawlModels()
-# b = a.data[0][1]
-# c = a.crawl_genres_page(b)[0]
-# d = a.crawl_movies(c)
-# print()
