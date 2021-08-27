@@ -28,6 +28,8 @@ accounts/migrations/__pycache__/*
 products/migrations/__pycache__/*
 
 .idea/
+media/
+movies/management/commands/images/
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
