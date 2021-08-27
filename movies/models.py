@@ -27,7 +27,8 @@ class Movie(BaseModel):
                             )
 
     genre = models.ForeignKey(Genre,
-                              on_delete=models.CASCADE
+                              on_delete=models.CASCADE,
+                              verbose_name=_('Genre')
                               )
 
     movie_type = models.CharField(_('Movie type'),
@@ -37,7 +38,6 @@ class Movie(BaseModel):
 
     rating = models.CharField(_('Rating'),
                               max_length=30,
-                              default=0,
                               blank=True,
                               )
 
