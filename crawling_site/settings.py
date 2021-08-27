@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -100,5 +101,10 @@ STATIC_ROOT = 'static_cdn'
 # Media config
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Translation Config
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 DEFAULT_AUTO_FIELD = config('DEFAULT_AUTO_FIELD')

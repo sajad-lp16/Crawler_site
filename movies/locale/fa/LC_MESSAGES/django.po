@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-27 17:42+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: movies/apps.py:9 movies/models.py:81
+msgid "Movie"
+msgstr "فیلم"
+
+#: movies/apps.py:10 movies/models.py:82
+msgid "Movies"
+msgstr "فیلم ها"
+
+#: movies/models.py:10
+msgid "title"
+msgstr "عنوان"
+
+#: movies/models.py:20 movies/models.py:31
+msgid "Genre"
+msgstr "موضوع"
+
+#: movies/models.py:21
+msgid "Genres"
+msgstr "موضوع ها"
+
+#: movies/models.py:25
+msgid "Name"
+msgstr "نام"
+
+#: movies/models.py:34
+msgid "Movie type"
+msgstr "نوع فیلم"
+
+#: movies/models.py:39
+msgid "Rating"
+msgstr "امتیاز"
+
+#: movies/models.py:44
+msgid "Language"
+msgstr "زبان"
+
+#: movies/models.py:49
+msgid "Production Year"
+msgstr "سال ساخت"
+
+#: movies/models.py:56
+msgid "Director"
+msgstr "کارگردان"
+
+#: movies/models.py:61
+msgid "Actors"
+msgstr "بازیگران"
+
+#: movies/models.py:66
+msgid "Cover"
+msgstr "تصویر"
+
+#: movies/models.py:72
+msgid "Description"
+msgstr "توضیحات"
+
+#: templates/home.html:6
+msgid "Main Page"
+msgstr "صفحه ی اصلی"
+
+#: templates/home.html:11
+msgid "Welcome To Top Movies Website"
+msgstr ".به وب سایت بهترین فیلم ها خوش آمدید"
