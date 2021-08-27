@@ -8,4 +8,4 @@ def splitter(name):
 
 def file_name_setter(instance, file_name):
     ext = splitter(file_name)
-    return f'movie_pics/{instance.name}/{instance.name}{ext}'
+    return f'movie_pics/{instance.name}{ext}'
