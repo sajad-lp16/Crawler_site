@@ -23,7 +23,7 @@ class Genre(BaseModel):
 
 class Movie(BaseModel):
     name = models.CharField(_('Name'),
-                            max_length=30,
+                            max_length=200,
                             )
 
     genre = models.ForeignKey(Genre,
@@ -31,17 +31,18 @@ class Movie(BaseModel):
                               )
 
     movie_type = models.CharField(_('Movie type'),
-                                  max_length=20,
+                                  max_length=50,
                                   blank=True
                                   )
 
-    rating = models.FloatField(_('Rating'),
-                               blank=True,
-                               null=True
-                               )
+    rating = models.CharField(_('Rating'),
+                              max_length=30,
+                              default=0,
+                              blank=True,
+                              )
 
     movie_language = models.CharField(_('Language'),
-                                      max_length=30,
+                                      max_length=50,
                                       blank=True
                                       )
 
@@ -53,12 +54,12 @@ class Movie(BaseModel):
                                           )
 
     director = models.CharField(_('Director'),
-                                max_length=40,
+                                max_length=60,
                                 blank=True
                                 )
 
     actors = models.CharField(_('Actors'),
-                              max_length=200,
+                              max_length=400,
                               blank=True
                               )
 
