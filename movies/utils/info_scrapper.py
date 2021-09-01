@@ -1,7 +1,7 @@
 import re
 from bs4 import BeautifulSoup
 from requests import get
-from movies.management.commands import _constants
+from movies.utils import constants
 from django.core.files.uploadedfile import SimpleUploadedFile
 import uuid
 
@@ -18,7 +18,7 @@ class Singleton(type):
 
 class BaseCrawl(metaclass=Singleton):
     def __init__(self):
-        self.main_page = self.get_from_target(_constants.URL)
+        self.main_page = self.get_from_target(constants.URL)
 
     @staticmethod
     def get_from_target(url):
@@ -62,7 +62,7 @@ class CrawlModels(BaseCrawl):
         for item in clean_data:
             try:
                 data_type = re.search(pattern, item).group()
-                result[_constants.TRANSLATOR[data_type]] = item.replace(
+                result[constants.TRANSLATOR[data_type]] = item.replace(
                     data_type, ''
                 ).replace(':', '').strip()
             except:
