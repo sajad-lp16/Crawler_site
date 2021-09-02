@@ -1,4 +1,7 @@
+import re
+
 from django.core.management.base import BaseCommand
+
 from movies.utils import info_scrapper
 from concurrent.futures import ThreadPoolExecutor
 from movies import models
@@ -11,7 +14,9 @@ class Command(BaseCommand):
         self.crawler = info_scrapper.CrawlModels()
 
     def build_models(self, genre_data):
-        genre = models.Genre.objects.create(title=genre_data[0])
+        pat = r'[\s\.]+'
+        slug = re.sub(pat, '-', genre_data[0], flags=re.M)
+        genre = models.Genre.objects.create(title=genre_data[0], slug=slug)
         posts = self.crawler.crawl_genres_page(genre_data[1])
         # print(posts)
         with ThreadPoolExecutor(max_workers=4) as exe:
