@@ -8,6 +8,7 @@ from .utils import functions
 
 class Genre(BaseModel):
     title = models.CharField(_('title'), max_length=30, unique=True)
+    slug = models.SlugField(_('slug'), allow_unicode=True)
 
     def __str__(self):
         return self.title
@@ -21,7 +22,9 @@ class Genre(BaseModel):
 class Movie(BaseModel):
     name = models.CharField(_('Name'), max_length=200, )
 
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, verbose_name=_('Genre'))
+    slug = models.SlugField(_('slug'), allow_unicode=True, max_length=220)
+
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, verbose_name=_('Genre'), related_name='movies')
 
     movie_type = models.CharField(_('Movie type'), max_length=50, blank=True)
 

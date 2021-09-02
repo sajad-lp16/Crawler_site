@@ -1,0 +1,45 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+
+{% block title %}فهرست گیگ ها{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="features_items"><!--features_items-->
+                        {% block sell %}{% endblock %}
+                        <h2 class="title text-center">لیست فیلم ها</h2>
+                        {% for movie in movies %}
+                            {% block list %}
+                                {% include 'components/list_component.html' with gig=gig %}
+                            {% endblock %}
+                        {% endfor %}
+
+
+                        <div class="clearfix"></div>
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li><a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                            {% endif %}
+                            {% for i in paginator.page_range %}
+                                {% if i == page_obj.number %}
+                                    <li class="active"><a href="{{ request.path }}?page={{ i }}">{{ i }}</a></li>
+                                {% else %}
+                                    <li><a href="{{ request.path }}?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li><a href="{{ request.path }}?page={{ page_obj.next_page_number }}">بعدی</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
