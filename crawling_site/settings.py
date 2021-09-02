@@ -19,6 +19,7 @@ INSTALLED_APPS = [
 
     # Project Base Application
     'movies.apps.MoviesConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -34,6 +35,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = config('ROOT_URLCONF')
 
+# Define Customized user model
+AUTH_USER_MODEL = 'accounts.User'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -48,6 +52,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'utils.context_processors.get_genres'
             ],
         },
     },
