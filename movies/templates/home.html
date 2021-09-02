@@ -1,7 +1,7 @@
-{% extends 'shared/_MainLayout.html' %}
+{% extends 'shared/_Main_page.html' %}
 {% load static %}
 
-{% block title %}فهرست گیگ ها{% endblock %}
+{% block title %}صفحه ی اصلی{% endblock %}
 
 {% block content %}
     <section>
@@ -10,15 +10,16 @@
 
                 <div class="col-sm-12">
                     <div class="features_items"><!--features_items-->
-                        {% block sell %}{% endblock %}
                         <h2 class="title text-center">لیست فیلم ها</h2>
-                        {% for movie in movies %}
-                            {% block list %}
-                                {% include 'components/list_component.html' with gig=gig %}
-                            {% endblock %}
-                        {% endfor %}
-
-
+                        {% if movies %}
+                            {% for movie in movies %}
+                                {% block list %}
+                                    {% include 'components/list_component.html' with movie=movie %}
+                                {% endblock %}
+                            {% endfor %}
+                        {% else %}
+                            <h3 style="text-align: center">هیچ فیلمی در حال حاضر در دسترس نمیباشد</h3>
+                        {% endif %}
                         <div class="clearfix"></div>
                         <ul class="pagination">
                             {% if page_obj.has_previous %}
