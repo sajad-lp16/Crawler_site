@@ -1,0 +1,86 @@
+{% load static %}
+
+<header id="header">
+    <!--header-->
+    <div class="header_top">
+        <!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header_top-->
+
+    <div class="header-middle">
+        <!--header-middle-->
+        <div class="">
+            <div class="row" style="display: flex; align-items: center; flex-direction: row-reverse;">
+
+                <div class="col-sm-2">
+                    <div class="logo pull-left">
+                        <a href="/"><img src="{% static 'images/shop/yara.png' %}" width="140px" alt="Logo"
+                        /></a>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    {#                    {% include 'components/_search_component.html' %}#}
+                </div>
+                <div class="col-sm-5" style="margin-right: 58px">
+                    <div class=" pull-right">
+                        <ul class="nav navbar-nav">
+                            {% if request.user.is_authenticated %}
+                                <li style="font-size: 16px"><a style="color: #42075b"
+                                                               href="{% url 'accounts:profile' %}"><i
+                                        class="fa fa-user"></i>
+                                    حساب کاربـری</a>
+                                </li>
+                                <li style="font-size: 16px"><a style="color: #42075b" href="{% url 'accounts:logout' %}"><i
+                                        class="fa fa-lock"></i>خروج</a></li>
+                            {% else %}
+                                <li style="font-size: 16px"><a style="color: #42075b" href="{% url 'accounts:login' %}"><i
+                                        class="fa fa-lock"></i> ورود</a></li>
+                                <li style="font-size: 16px"><a style="color: #42075b"
+                                                               href="{% url 'accounts:register' %}"><i
+                                        class="fa fa-lock"></i> ثبت نام</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header-middle-->
+
+    <div class="header-bottom">
+        <!--header-bottom-->
+        <div class="container">
+            <div class="row">
+
+                <div class="mainmenu">
+                    <ul class="nav navbar-nav collapse navbar-collapse">
+                        <li style="margin-left: 8px"><a href="{% url 'movies:home' %}" class="active">خـانه</a></li>
+
+                        {% for genre in genres %}
+                            <li>
+                                <a
+                                        href="{% url 'movies:movies_list' genre.slug %}">{{ genre.title }}
+                                </a>
+                                <ul role="menu" class="sub-menu">
+                                </ul>
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a href="">درباره مـا</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--/header-bottom-->
+</header>
