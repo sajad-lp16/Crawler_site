@@ -4,10 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 
-from movies import views
-
 urlpatterns = i18n_patterns(
-    path('', views.MainPage.as_view(), name='main-page'),
+    path('', include('movies.urls', namespace='movies')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     path('admin/', admin.site.urls),
     prefix_default_language=False
 )
