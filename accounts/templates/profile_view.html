@@ -1,0 +1,91 @@
+{% extends 'shared/_Main_page.html' %}
+{% load static %}
+
+{% block title %}صفحه ی پروفایل{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="col-sm-3 pull-right">
+            <div class="left-sidebar">
+                <h2 style="font-size:x-large">حساب کاربری</h2>
+                <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="{% url 'accounts:edit_profile' %}">
+                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    <p style="font-size: large">
+                                        ویرایش پروفایل
+                                    </p>
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="{% url 'accounts:logout' %}">
+                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    <p style="font-size: large">
+                                        خروج
+                                    </p>
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 padding-right">
+            <div class="product-details"><!--product-details-->
+                <div class="col-sm-5 col-md-offset-0">
+                    <div class="view-product col-md-offset-3" style="width:320px;height: 250px">
+
+                        {% if user.avatar %}
+                            <img src="{{ user.avatar.url }}" alt="" style="border-color:#42075b;border-width: 5px;">
+                        {% else %}
+                            <img src="{% static 'images/product-details/1.jpg' %}" alt=""
+                                 style="border-color:#42075b;border-width: 5px;">
+                        {% endif %}
+
+                    </div>
+
+                </div>
+                <div class="col-sm-7">
+                    <div class="product-information" style="font-size: 16px"><!--/product-information-->
+                        <div>
+                            <h3>مشخصات کاربر</h3>
+                            <br>
+                            <h3 style="color: tomato">{{ user.first_name }} {{ user.last_name }}</h3>
+                            <br>
+                        </div>
+                        <div>
+                            <p><b>سن :</b>{% if user.age %}
+                                {{ user.age }}
+                            {% else %}
+                                وارد نشده
+                            {% endif %}
+                            </p>
+                            <p><b>آدرس ایمیل :</b>{{ user.email }}</p>
+                            <p><b>شماره تماس :</b>
+                                {% if user.phone_number %}
+                                    {{ user.phone_number }}
+                                {% else %}
+                                    وارد نشده
+                                {% endif %}
+                            </p>
+                            <p><b>آخرین ویرایش :</b> {{ user.update_time }} </p>
+                        </div>
+                        <span class="socials-share share">
+
+								</span>
+                    </div><!--/product-information-->
+                </div>
+            </div><!--/product-details-->
+        </div>
+    </div>
+
+{% endblock %}

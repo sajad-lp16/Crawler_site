@@ -1,15 +1,12 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.hashers import make_password
 
 User = get_user_model()
 
 
 class RegisterForm(forms.ModelForm):
-    repeat_password = forms.CharField(widget=forms.PasswordInput(), )
-
-    city = forms.CharField()
-    exact_address = forms.CharField()
+    repeat_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
@@ -20,8 +17,10 @@ class RegisterForm(forms.ModelForm):
             'first_name',
             'last_name',
             'email',
+            'age',
             'phone_number',
             'avatar',
+            'bio'
         )
 
     def clean(self):
@@ -46,6 +45,12 @@ class RegisterForm(forms.ModelForm):
         if que:
             raise forms.ValidationError('email is Already taken!')
         return email
+
+    def save(self, commit=True):
+        password = self.cleaned_data['password']
+        self.instance.password = make_password(password)
+        self.instance.save()
+        return self.instance
 
 
 class LoginForm(forms.Form):

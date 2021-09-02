@@ -1,0 +1,139 @@
+{% extends 'shared/_Main_page.html' %}
+{% load static %}
+
+{% block title %}ویرایش پروفایل{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="col-sm-3 pull-right">
+            <div class="left-sidebar">
+                <h2 style="font-size:x-large">مدیریت حساب کاربری</h2>
+                <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="{% url 'accounts:profile' %}">
+                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    <p style="font-size: large">
+                                        پروفایل
+                                    </p>
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="">
+                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    <p style="font-size: large">
+                                        گیگ های من
+                                    </p>
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="">
+                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    <p style="font-size: large">
+                                        خروج
+                                    </p>
+                                </a>
+                            </h4>
+                        </div>
+
+                    </div>
+
+                </div><!--/category-productsr-->
+            </div>
+        </div>
+        <section id="form">
+            <!--form-->
+            <div class="row">
+                <div class="col-sm-8 col-md-offset-3">
+                    <div class="signup-form">
+                        <!--sign up form-->
+                        <h2>ویرایش پروفایل</h2>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                            {{ form.first_name }}
+                            {% for error in form.first_name.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                            {{ form.last_name }}
+                            {% for error in form.last_name.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                            {{ form.username }}
+                            {% for error in form.username.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                            {{ form.email }}
+                            {% for error in form.email.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <label for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}</label>
+                            {{ form.phone_number }}
+                            {% for error in form.phone_number.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <label for="{{ form.age.id_for_label }}">{{ form.age.label }}</label>
+                            {{ form.age }}
+                            {% for error in form.age.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <label for="{{ form.bio.id_for_label }}">{{ form.bio.label }}</label>
+                            {{ form.bio }}
+                            {% for error in form.bio.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+                            <label for="{{ form.birth.id_for_label }}">{{ form.birth.label }}</label>
+                            {{ form.birth }}
+                            {% for error in form.birth.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <label for="{{ form.skills.id_for_label }}">{{ form.skills.label }}</label>
+                            <br>
+                            <div class="col">
+                                {% for skill in form.skills %}
+
+                                    <span style="margin-left: 60px">{{ skill }}</span>
+
+                                {% endfor %}
+                            </div>
+                            <br>
+                            <br>
+
+                            <label for="{{ form.avatar.id_for_label }}">{{ form.avatar.label }}</label>
+                            {{ form.avatar }}
+                            {% for error in form.avatar.errors %}
+                                <p style="color: red;"> {{ error }} </p>
+                            {% endfor %}
+
+                            <button type="submit" class="btn btn-default">اعمال تغییرات</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
