@@ -38,6 +38,9 @@ ROOT_URLCONF = config('ROOT_URLCONF')
 # Define Customized user model
 AUTH_USER_MODEL = 'accounts.User'
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
