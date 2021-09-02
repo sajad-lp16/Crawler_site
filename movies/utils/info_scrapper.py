@@ -52,16 +52,19 @@ class CrawlModels(BaseCrawl):
     @staticmethod
     def crawl_movies(movie):
         result = {}
-        pattern = r'[^:]*'
+        pattern_1 = r'[^:]+'
+        pattern_2 = r'[\s\.]+'
         data = movie.select_one('div.contents').find_all(
             'p', {'style': 'text-align: right;'}
         )
         name = movie.select_one('h2').text.replace('دانلود فیلم ', '')
         result['name'] = name
+        slug = re.sub(pattern_2, '-', name, flags=re.M)
+        result['slug'] = slug
         clean_data = [item.text for item in data]
         for item in clean_data:
             try:
-                data_type = re.search(pattern, item).group()
+                data_type = re.search(pattern_1, item).group()
                 result[constants.TRANSLATOR[data_type]] = item.replace(
                     data_type, ''
                 ).replace(':', '').strip()
