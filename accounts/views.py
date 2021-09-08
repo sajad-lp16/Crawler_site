@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model, login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -68,12 +68,3 @@ class EditProfile(generic.UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
-
-# class ProfileEdit(LoginRequiredMixin, generic.UpdateView):
-#     queryset = User.objects.all()
-#     form_class = forms.ProfileForm
-#     template_name = 'edit_profile.html'
-#     success_url = reverse_lazy('home')
-#
-#     def get_object(self, queryset=None):
-#         return self.request.user
