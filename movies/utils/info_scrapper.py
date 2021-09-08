@@ -2,6 +2,7 @@ import re
 from bs4 import BeautifulSoup
 from requests import get
 from movies.utils import constants
+from movies.utils import functions
 from django.core.files.uploadedfile import SimpleUploadedFile
 import uuid
 
@@ -59,7 +60,7 @@ class CrawlModels(BaseCrawl):
         )
         name = movie.select_one('h2').text.replace('دانلود فیلم ', '')
         result['name'] = name
-        slug = re.sub(pattern_2, '-', name, flags=re.M)
+        slug = functions.generate_slug(name)
         result['slug'] = slug
         clean_data = [item.text for item in data]
         for item in clean_data:
