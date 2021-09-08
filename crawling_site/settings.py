@@ -20,6 +20,10 @@ INSTALLED_APPS = [
     # Project Base Application
     'movies.apps.MoviesConfig',
     'accounts.apps.AccountsConfig',
+
+    # Third party applications
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -116,3 +120,4 @@ LOCALE_PATHS = [
 ]
 
 DEFAULT_AUTO_FIELD = config('DEFAULT_AUTO_FIELD')
+AUTHENTICATION_BACKENDS = ['accounts.utils.authentication_backend.AuthenticationBackend']
