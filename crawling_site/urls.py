@@ -13,6 +13,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('', include('movies.urls', namespace='movies')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('comments/', include('comments.urls', namespace='comments')),
     path('admin/', admin.site.urls),
     prefix_default_language=False
 )
