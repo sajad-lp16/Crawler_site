@@ -31,7 +31,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         'Unselect this instead of deleting accounts.'
     ), )
     bio = models.TextField(_('bio'), blank=True)
-    avatar = models.ImageField(_('avatar'), blank=True, upload_to=functions.rename_file)
+    avatar = models.ImageField(_('avatar'), blank=True, upload_to=functions.rename_file, default='unknown.png')
     age = models.PositiveSmallIntegerField(_('age'), blank=True, null=True)
     phone_number = models.PositiveBigIntegerField(_('phone number'), validators=[validators.phone_number_validator],
                                                   null=True, blank=True, unique=True)
