@@ -14,7 +14,7 @@
                         {% if movies %}
                             {% for movie in movies %}
                                 {% block list %}
-                                    {% include 'components/list_component.html' with movie=movie %}
+                                    {% include 'components/movies_list.html' with movie=movie %}
                                 {% endblock %}
                             {% endfor %}
                         {% else %}

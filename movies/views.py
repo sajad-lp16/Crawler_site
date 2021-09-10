@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 
 from . import models
+from comments.models import Comment
 
 
 class Home(generic.ListView):
@@ -26,3 +27,8 @@ class MovieDetail(generic.DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(models.Movie, slug=self.kwargs['slug'], genre__slug=self.kwargs['slug1'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.get_comments(self.get_object().id)
+        return context
