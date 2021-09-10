@@ -20,6 +20,8 @@ class LoginUser(generic.View):
             user = authenticate(**form.cleaned_data)
             if user is not None:
                 login(request, user)
+                if 'next' in request.POST:
+                    return redirect(request.POST['next'])
                 return redirect('movies:home')
         return self.get(request, *args, **kwargs)
 
