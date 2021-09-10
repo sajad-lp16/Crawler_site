@@ -1,0 +1,27 @@
+
+<script>
+    $(document).ready(function () {
+        $('#{{ movie.id }}').click(function () {
+            let comment = $('#comment_modal{{ movie.id }}').val();
+            $.ajax({
+                url: "{% url 'comments:comments-api:comment_list_create' %}",
+                headers: {
+                    'X-CSRFToken': "{{ csrf_token }}",
+                },
+                data: {
+                    "pk": "{{ movie.id }}",
+                    "content": comment,
+                },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    $('#myModal2').modal('show');
+                },
+                error: function (xhr) {
+                    $('#myModal3').modal('show');
+                }
+
+            });
+        })
+    });
+</script>

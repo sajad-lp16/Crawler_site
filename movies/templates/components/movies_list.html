@@ -14,6 +14,7 @@
 
         </div>
         <div class="choose">
+            <p style="text-align: center; font-size: 12pt">{{ movie.name }}</p>
             <ul class="nav nav-pills nav-justified">
                 <li><a href="{% url 'movies:movie_detail' movie.genre.slug movie.slug %}"><i class="fa fa-plus-square"></i>مشاهده جزئیات</a></li>
             </ul>
