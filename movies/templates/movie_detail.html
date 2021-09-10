@@ -1,3 +1,11 @@
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 {% extends 'shared/_Main_page.html' %}
 {% load static %}
 
@@ -22,95 +30,101 @@
                                          alt="" style="border-color:#42075b;border-width: 5px;>
                                 {% endif %}
                             </div>
-                            <div id=" similar-product" class="carousel slide" data-ride="carousel">
-
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                    <div class="item">
-                                    </div>
-                                    <div class="item active">
-                                    </div>
-                                    <div class="item">
-                                    </div>
-
-                                </div>
-
-                            </div>
-
                         </div>
-                        <div class="col-sm-7">
-                            <div class="product-information"><!--/product-information-->
-                                <img src="{% static 'images/product-details/new.png' %}" class="newarrival" alt="">
-                                <div>
-                                    <h2>{{ gig.title }}</h2>
-
-                                </div>
-                                <div>
+                        <div class=" col-sm-7">
+                                <div class="product-information"><!--/product-information-->
+                                    <img src="{% static 'images/product-details/new.png' %}" class="newarrival" alt="">
+                                    <div>
 									<span>
 										<span>فیلم {{ movie.name }} </span>
 									</span>
 
-                                    <br><br>
+                                        <br><br>
 
+                                    </div>
+                                    <br>
+                                    <div><br><br>
+                                        <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>نام فیلم
+                                            :{{ movie.name }}</b></p>
+                                        <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>ژانر
+                                            : {{ movie.genre }}</b>
+                                        </p>
+                                        {% if movie.director %}
+                                            <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>کارگردان
+                                                : {{ movie.director }}</b><a href=""></a>
+                                            </p>
+                                        {% endif %}
+                                        {% if movie.rating %}
+                                            <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>امتیاز
+                                                : {{ movie.rating }}</b><a href=""></a>
+                                            </p>
+                                        {% endif %}
+                                        {% if movie.movie_language %}
+                                            <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>زبان
+                                                فیلم
+                                                : {{ movie.movie_language }}</b><a href=""></a>
+                                            </p>
+                                        {% endif %}
+                                        {% if movie.movie_type %}
+                                            <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>نوع
+                                                فیلم
+                                                : {{ movie.movie_type }}</b><a href=""></a>
+                                            </p>
+                                        {% endif %}
+                                        {% if movie.actors %}
+                                            <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>بازیگران
+                                                :{{ movie.actors }} </b><a href=""></a>
+                                            </p>
+                                        {% endif %}
+                                        <p style="text-align: justify; line-height: 30px;font-size: 15px; color: red">
+                                            <b>خلاصه
+                                                داستان
+                                                : {{ movie.description }}</b><a href=""></a>
+                                        </p>
+                                    </div>
+                                    <br>
+
+                                </div><!--/product-information-->
+                            </div>
+                        </div><!--/product-details-->
+
+                        <div class="category-tab shop-details-tab"><!--category-tab-->
+
+                            <div class="col-sm-12">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#reviews" data-toggle="tab">نظرات
+                                        ({{ comments|length }})</a></li>
+                                </ul>
+                                <div class='col-md-12'>
+                                    <div class='col-md-6 col-md-offset-3'>
+
+
+                                        <header>
+                                            <h3 style="text-align: center"><b>دیدگاه خود را به اشتراک بگذارید </b></h3>
+                                        </header>
+                                        {% if user.is_authenticated %}
+                                            <div style="text-align: center;">
+                                                <div class="container">
+                                                    {% include 'components/create_modal.html' with movie=movie %}
+                                                </div>
+                                                <br>
+                                            </div>
+                                        {% else %}
+                                            <div style="text-align: center">
+                                                <a style="color: rgb(255, 153, 0); font-size: 16px;"
+                                                   href="/accounts/login?next={{ request.path }}"><span
+                                                        style="color: rgb(15, 49, 49);">برای به اشتراک گذاری دیدگاه خود به حساب کاربـری</span><span><b> وارد</b></span><span
+                                                        style="color: rgb(15, 49, 49);"> شوید </span></a>
+                                            </div>
+                                        {% endif %}
+                                        {% include 'components/comment_list.html' with comments=comments %}
+                                    </div>
                                 </div>
-                                <br>
-                                <div><br><br>
-                                    <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>نام فیلم
-                                        :{{ movie.name }}</b></p>
-                                    <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>ژانر
-                                        : {{ movie.genre }}</b><a
-                                            href="{{ gig.user.profile.get_absolute_url }}">{{ gig.user.get_full_name }} </a>
-                                    </p>
-                                    {% if movie.director %}
-                                        <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>کارگردان
-                                            : {{ movie.director }}</b><a href=""></a>
-                                        </p>
-                                    {% endif %}
-                                    {% if movie.rating %}
-                                        <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>امتیاز
-                                            : {{ movie.rating }}</b><a href=""></a>
-                                        </p>
-                                    {% endif %}
-                                    {% if movie.movie_language %}
-                                        <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>زبان فیلم
-                                            : {{ movie.movie_language }}</b><a href=""></a>
-                                        </p>
-                                    {% endif %}
-                                    {% if movie.movie_type %}
-                                        <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>نوع فیلم
-                                            : {{ movie.movie_type }}</b><a href=""></a>
-                                        </p>
-                                    {% endif %}
-                                    {% if movie.actors %}
-                                        <p style="text-align: justify; line-height: 30px;font-size: 15px"><b>بازیگران
-                                            :{{ movie.actors }} </b><a href=""></a>
-                                        </p>
-                                    {% endif %}
-                                    <p style="text-align: justify; line-height: 30px;font-size: 15px; color: red"><b>خلاصه
-                                        داستان
-                                        : {{ movie.description }}</b><a href=""></a>
-                                    </p>
-                                </div>
-                                <br>
-
-                            </div><!--/product-information-->
+                            </div>
                         </div>
-                    </div><!--/product-details-->
-
-                    <div class="category-tab shop-details-tab"><!--category-tab-->
-
-                        <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li><a href="#details" data-toggle="tab">جزئیات</a></li>
-                                <li class="active"><a href="#reviews" data-toggle="tab">نظرات
-                                    ({{ comments|length }})</a></li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
             </div>
-        </div><!--/category-tab-->
+        </div>
     </section>
-
-{% endblock %}f
+{% endblock %}
