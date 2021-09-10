@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     # Project Base Application
     'movies.apps.MoviesConfig',
     'accounts.apps.AccountsConfig',
+    'comments.apps.CommentsConfig',
 
     # Third party applications
     'rest_framework',
