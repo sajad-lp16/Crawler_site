@@ -8,6 +8,8 @@ from movies.utils import functions
 
 
 class GenreSerializer(serializers.ModelSerializer):
+    serializers.HyperlinkedModelSerializer()
+
     class Meta:
         model = models.Genre
         fields = (
@@ -19,22 +21,11 @@ class GenreSerializer(serializers.ModelSerializer):
             'slug': {'read_only': True},
         }
 
-    # title = serializers.CharField()
-
     def create(self, validated_data):
         title = validated_data['title']
         slug = functions.generate_slug(title)
         instance, _ = models.Genre.objects.get_or_create(title=title, slug=slug)
         return instance
-
-    # def update(self, instance, validated_data):
-    #
-    #     for attr, value in validated_data.items():
-    #         setattr(instance, attr, value)
-    #
-    #     instance.save()
-    #
-    #     return instance
 
 
 class MovieSerializer(serializers.ModelSerializer):
