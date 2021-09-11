@@ -1,0 +1,47 @@
+<div class="modal fade" id="delete_modal_success" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input id="message_button" type="hidden" class="close"
+                       data-dismiss="modal">&times;
+                <h4 class="modal-title">پیام سایت</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="color: mediumvioletred">
+                    .نظر شما با موفقیت حذف شد
+                </h4>
+            </div>
+            <div class="modal-footer">
+
+                <button id="close_button_delete{{ comment_id }}" type="button" class="btn btn-default"
+                        data-dismiss="modal">بستن
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="delete_Modal_error" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input id="message_button" type="hidden" class="close"
+                       data-dismiss="modal">&times;
+                <h4 class="modal-title">پیام سایت</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="color: mediumvioletred">
+                    خطایی پیش آمد لطفا مجددا تلاش کنید.
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">بستن
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'components/delete_ajax.html' with comment_id=comment.id %}

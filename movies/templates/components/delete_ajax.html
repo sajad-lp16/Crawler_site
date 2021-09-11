@@ -1,26 +1,22 @@
-
 <script>
     $(document).ready(function () {
-        $('#{{ movie.id }}').click(function () {
-            let comment = $('#comment_modal{{ movie.id }}').val();
+        $('#delete{{ comment_id }}').click(function () {
             $.ajax({
-                url: "{% url 'comments:comments-api:comment_list_create' %}",
+                url: "{% url 'comments:comments-api:comment_retrieve_update_destroy' comment_id %}",
                 headers: {
                     'X-CSRFToken': "{{ csrf_token }}",
                 },
-                data: {
-                    "pk": "{{ movie.id }}",
-                    "content": comment,
-                },
-                type: "post",
+                type: "delete",
                 dataType: "json",
                 success: function (data) {
-                    $('#myModal2').modal('show');
+                    $('#delete_modal_success').modal('show');
+                    $('#close_button_delete{{ comment_id }}').click(function () {
+                        location.reload();
+                    })
                 },
                 error: function (xhr) {
-                    $('#myModal3').modal('show');
+                    $('#delete_Modal_error').modal('show');
                 }
-
             });
         })
     });

@@ -9,40 +9,42 @@
                 type: "get",
                 dataType: "json",
                 success: function (data) {
-                    $('#updateModal3').modal('show');
+                    $('#updateModal').modal('show');
                     $('#update_comment{{ comment_id }}').html(data.content)
                 },
                 error: function (xhr) {
-                    $('#updateModal4').modal('show');
+                    $('#updateModal_error').modal('show');
+                }
+            });
+        })
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#{{ comment_id }}update').click(function () {
+            let comment = $('#update_comment{{ comment_id }}').val();
+            $.ajax({
+                url: "{% url 'comments:comments-api:comment_retrieve_update_destroy' comment_id %}",
+                headers: {
+                    'X-CSRFToken': "{{ csrf_token }}",
+                },
+                data: {
+                    "content": comment,
+                },
+                type: "patch",
+                dataType: "json",
+                success: function (data) {
+                    $('#update_modal_success').modal('show');
+                    $('#close_button{{ comment_id }}').click(function () {
+                        location.reload();
+                    });
+                },
+                error: function (xhr) {
+                    $('#updateModal_error').modal('show');
                 }
 
             });
         })
     });
 </script>
-
-{#<script>#}
-{#    $(document).ready(function () {#}
-{#        $('#update{{ comment_id }}').click(function () {#}
-{#            let comment = $('#comment_modal{{ movie.id }}').val();#}
-{#            $.ajax({#}
-{#                url: "{% url 'comments:comments-api:comment_retrieve_update_destroy' comment_id %}",#}
-{#                headers: {#}
-{#                    'X-CSRFToken': "{{ csrf_token }}",#}
-{#                },#}
-{#                data: {#}
-{#                        "content": comment,#}
-{#                },#}
-{#                type: "patch",#}
-{#                dataType: "json",#}
-{#                success: function (data) {#}
-{#                    $('#myModal2').modal('show');#}
-{#                },#}
-{#                error: function (xhr) {#}
-{#                    $('#myModal3').modal('show');#}
-{#                }#}
-{##}
-{#            });#}
-{#        })#}
-{#    });#}
-{#</script>#}

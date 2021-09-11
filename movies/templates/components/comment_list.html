@@ -21,7 +21,7 @@
 
         {% if request.user == comment.user %}
             <button type="submit" id="delete{{ comment.id }}">حذف</button>
-{#            {% include 'components/delete_ajax.html' with comment_id=comment.id %}#}
+            {% include 'components/delete_modal.html' with comment_id=comment.id %}
             <button id="update{{ comment.id }}" type="submit">ویرایش</button>
             {% include 'components/update_modal.html' with comment_id=comment.id %}
         {% endif %}
@@ -46,8 +46,6 @@
                                 class="fa fa-user" style="color: #3A3A3A;"></i><b
                                 style="color: #3A3A3A">{{ reply.user }}</b></a>
                     </li>
-
-
                 </ul>
                 <p style="font-size: 18px">{{ reply.content }}</p>
 
@@ -89,8 +87,6 @@
                                         class="fa fa-user" style="color: #3A3A3A;"></i><b
                                         style="color: #3A3A3A">{{ reply.user }}</b></a>
                             </li>
-
-
                         </ul>
                         <p style="font-size: 18px">{{ reply.content }}</p>
 
@@ -119,11 +115,8 @@
             </div>
 
         {% endfor %}
-
     </div>
-
     <br>
-
     <hr style="border-width: 2px;border-color: #5d5f5e;opacity: 50%">
 {% endfor %}
 
