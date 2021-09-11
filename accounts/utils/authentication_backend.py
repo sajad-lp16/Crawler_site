@@ -13,7 +13,10 @@ class AuthenticationBackend(ModelBackend):
             Q(username=username) | Q(email=username)
         ).first()
         if user is None:
-            return
+            try:
+                user = User.objects.filter(phone_number=username).first()
+            except ValueError:
+                return
 
         if user.check_password(password) and self.user_can_authenticate(user):
             return user
