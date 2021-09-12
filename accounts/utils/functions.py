@@ -9,3 +9,5 @@ def base_name(file_name):
 def rename_file(instance, file_name):
     ext = base_name(file_name)
     return f'profiles/{instance}/{instance}{ext}'
+
+
