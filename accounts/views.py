@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth import views as authentication_views
 
 from . import forms
 
@@ -11,6 +12,8 @@ User = get_user_model()
 
 class LoginUser(generic.View):
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('/')
         form = forms.LoginForm()
         return render(request, 'login.html', {'form': form})
 
@@ -70,3 +73,22 @@ class EditProfile(generic.UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class PasswordReset(authentication_views.PasswordResetView):
+    template_name = 'password_reset.html'
+    success_url = reverse_lazy('accounts:password_reset_done')
+    email_template_name = 'reset_mail_format.html'
+
+
+class PasswordResetDone(authentication_views.PasswordResetDoneView):
+    template_name = 'password_reset_done.html'
+
+
+class PasswordResetConfirm(authentication_views.PasswordResetConfirmView):
+    template_name = 'password_reset_confirm.html'
+    success_url = reverse_lazy('accounts:password_reset_complete')
+
+
+class PasswordResetComplete(authentication_views.PasswordResetCompleteView):
+    template_name = 'password_reset_complete.html'

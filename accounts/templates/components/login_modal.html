@@ -1,0 +1,75 @@
+
+<div class="modal fade" id="login_Modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="button" class="close"
+                       data-dismiss="modal">&times;
+                <h4 class="modal-title">نظر خود را وارد
+                    نمایید</h4>
+            </div>
+            <div class="modal-body">
+                <label for="comment_modal{{ movie.id }}"
+                       style="font-size: 20pt">متن نظر</label>
+                <textarea id="comment_modal{{ movie.id }}"
+                          class="form-control">
+                </textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="{{ movie.id }}send" type="button" class="btn btn-default"
+                        data-dismiss="modal">ارسال نظر
+                </button>
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">بستن
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="login_Modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input id="message_button" type="hidden" class="close"
+                       data-dismiss="modal">&times;
+                <h4 class="modal-title">پیام سایت</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="color: mediumvioletred">
+                    نظر شما ثبت شد و پس از تایید ناظر منتشر خواهد شد
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">بستن
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{##}
+{#<div class="modal fade" id="myModal3" role="dialog">#}
+{#    <div class="modal-dialog modal-lg">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header">#}
+{#                <input id="message_button" type="hidden" class="close"#}
+{#                       data-dismiss="modal">&times;#}
+{#                <h4 class="modal-title">پیام سایت</h4>#}
+{#            </div>#}
+{#            <div class="modal-body">#}
+{#                <h4 style="color: mediumvioletred">#}
+{#                    خطایی پیش آمد لطفا مجددا تلاش کنید.#}
+{#                </h4>#}
+{#            </div>#}
+{#            <div class="modal-footer">#}
+{#                <button type="button" class="btn btn-default"#}
+{#                        data-dismiss="modal">بستن#}
+{#                </button>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+{% include 'components/login_ajax.html' with movie=movie %}

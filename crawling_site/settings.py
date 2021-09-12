@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     # Third party applications
     'rest_framework',
     'rest_framework.authtoken',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,19 @@ LOCALE_PATHS = [
 
 DEFAULT_AUTO_FIELD = config('DEFAULT_AUTO_FIELD')
 AUTHENTICATION_BACKENDS = ['accounts.utils.authentication_backend.AuthenticationBackend']
+
+# Forget Password Configuration
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+
+# Cache Configurations
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
